@@ -1,0 +1,462 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaproject;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Peter
+ */
+public class studentinfo extends javax.swing.JFrame {
+
+    /**
+     * Creates new form studentinfo
+     */
+    public studentinfo() {
+        
+    
+        initComponents();
+        String dept = null;
+        try {
+            Connection con;
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+                  con = DriverManager.getConnection("jdbc:derby://localhost:1527/javaproject","root","root123");
+            Statement st=con.createStatement();
+            String usn=frame1.jTextField1.getText();
+            System.out.println(usn);
+            ResultSet rs=st.executeQuery("select * from STUDENT where USN='"+usn+"'");
+          
+            while(rs.next())
+            //System.out.println(rs.getString(2));
+            {
+           jLabel4.setText("USN--"+rs.getString(1));
+            jLabel5.setText("Name--"+rs.getString(2));
+            jLabel6.setText("Age--"+rs.getInt(3));
+            jLabel7.setText("DOB--"+rs.getString(7));
+            jLabel8.setText("Section--"+rs.getString(4));
+            jLabel9.setText("Sex--"+rs.getString(5));
+            jLabel10.setText("Department--"+rs.getString(6));
+            jLabel11.setText("Sem--"+rs.getString(8));
+            jLabel12.setText("Contact--"+rs.getString(9));
+            jLabel13.setText("Father's name--"+rs.getString(10));
+            
+            }
+              rs=st.executeQuery("Select * from ADMISSION where USN='"+usn+"'");
+           while(rs.next())
+           {
+               jLabel14.setText("Admission through--"+rs.getString(2));
+            jLabel15.setText("Admission date--"+rs.getString(3));
+            jLabel16.setText("Fee--"+rs.getInt(4));
+           }
+            rs=st.executeQuery("select DNAME from STUDENT where USN='"+usn+"'");
+            while(rs.next()){
+            dept=rs.getString(1);
+        }
+            rs=st.executeQuery("select CNAME from COURSES where DNAME='"+dept+"'");
+                rs.next();
+                jLabel19.setText(rs.getString(1));
+                        rs.next();
+                 jLabel20.setText(rs.getString(1));
+                  rs.next();
+                  jLabel21.setText(rs.getString(1));
+                   rs.next();
+                   jLabel22.setText(rs.getString(1));
+                    rs.next();
+                    jLabel23.setText(rs.getString(1));
+            
+            rs=st.executeQuery("select * from ATTENDANCE where USN='"+usn+"'");
+            while(rs.next())
+            {
+                jLabel32.setText(rs.getString(2));
+                 jLabel33.setText(rs.getString(3));
+                  jLabel34.setText(rs.getString(4));
+                   jLabel35.setText(rs.getString(5));
+                    jLabel36.setText(rs.getString(6));
+            }
+             rs=st.executeQuery("select CNAME from COURSES where DNAME='"+dept+"'");
+              rs.next();
+                jLabel27.setText(rs.getString(1));
+                        rs.next();
+                 jLabel28.setText(rs.getString(1));
+                  rs.next();
+                  jLabel29.setText(rs.getString(1));
+                   rs.next();
+                   jLabel30.setText(rs.getString(1));
+                    rs.next();
+                    jLabel31.setText(rs.getString(1));
+                    
+                    rs=st.executeQuery("select * from MARKS where USN='"+usn+"'");
+                    rs.next();
+                    jLabel38.setText(rs.getString(2)+"    "+rs.getString(3)+"     "+rs.getString(4));
+                    rs.next();
+                    jLabel40.setText(rs.getString(2)+"    "+rs.getString(3)+"    "+rs.getString(4));
+                        rs.next();
+                    jLabel41.setText(rs.getString(2)+"    "+rs.getString(3)+"    "+rs.getString(4));
+                        rs.next();
+                        
+                    jLabel42.setText(rs.getString(2)+"    "+rs.getString(3)+"    "+rs.getString(4));
+                                rs.next();
+                    jLabel43.setText(rs.getString(2)+"    "+rs.getString(3)+"    "+rs.getString(4));
+                    
+            
+     
+    }   catch (ClassNotFoundException ex) {
+            Logger.getLogger(studentinfo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(studentinfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 700));
+        setMinimumSize(new java.awt.Dimension(900, 600));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
+
+        jLabel1.setText("Student Details");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(130, 20, 120, 14);
+
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(50, 70, 220, 20);
+
+        jLabel5.setText("jLabel5");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(50, 100, 280, 14);
+
+        jLabel6.setText("jLabel6");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(50, 130, 290, 14);
+
+        jLabel7.setText("jLabel7");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(50, 150, 300, 20);
+
+        jLabel8.setText("jLabel8");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(50, 180, 290, 14);
+
+        jLabel9.setText("jLabel9");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(50, 210, 280, 14);
+
+        jLabel10.setText("jLabel10");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(20, 240, 320, 14);
+
+        jLabel11.setText("jLabel11");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(50, 270, 270, 14);
+
+        jLabel12.setText("jLabel12");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(50, 300, 270, 14);
+
+        jLabel13.setText("jLabel13");
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(50, 330, 260, 14);
+
+        jLabel14.setText("jLabel14");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(50, 360, 270, 14);
+
+        jLabel15.setText("jLabel15");
+        jPanel1.add(jLabel15);
+        jLabel15.setBounds(50, 390, 280, 14);
+
+        jLabel16.setText("jLabel16");
+        jPanel1.add(jLabel16);
+        jLabel16.setBounds(50, 420, 280, 14);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(30, 30, 370, 500);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
+
+        jLabel2.setText("Attendance info");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(160, 20, 77, 14);
+
+        jLabel18.setText("Percentage");
+        jPanel2.add(jLabel18);
+        jLabel18.setBounds(230, 50, 90, 14);
+
+        jLabel19.setText("jLabel19");
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(40, 80, 180, 14);
+
+        jLabel20.setText("jLabel20");
+        jPanel2.add(jLabel20);
+        jLabel20.setBounds(40, 100, 180, 14);
+
+        jLabel21.setText("jLabel21");
+        jPanel2.add(jLabel21);
+        jLabel21.setBounds(40, 120, 180, 20);
+
+        jLabel22.setText("jLabel22");
+        jPanel2.add(jLabel22);
+        jLabel22.setBounds(40, 144, 180, 20);
+
+        jLabel23.setText("jLabel23");
+        jPanel2.add(jLabel23);
+        jLabel23.setBounds(40, 170, 190, 14);
+
+        jLabel32.setText("jLabel32");
+        jPanel2.add(jLabel32);
+        jLabel32.setBounds(240, 80, 40, 14);
+
+        jLabel33.setText("jLabel33");
+        jPanel2.add(jLabel33);
+        jLabel33.setBounds(240, 100, 40, 14);
+
+        jLabel34.setText("jLabel34");
+        jPanel2.add(jLabel34);
+        jLabel34.setBounds(240, 120, 40, 14);
+
+        jLabel35.setText("jLabel35");
+        jPanel2.add(jLabel35);
+        jLabel35.setBounds(240, 140, 40, 14);
+
+        jLabel36.setText("jLabel36");
+        jPanel2.add(jLabel36);
+        jLabel36.setBounds(240, 160, 40, 14);
+        jPanel2.add(jLabel39);
+        jLabel39.setBounds(320, 120, 0, 0);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(430, 30, 400, 250);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(null);
+
+        jLabel3.setText("Marks info");
+        jPanel3.add(jLabel3);
+        jLabel3.setBounds(170, 10, 49, 14);
+
+        jLabel24.setText("mse1");
+        jPanel3.add(jLabel24);
+        jLabel24.setBounds(220, 40, 25, 14);
+
+        jLabel25.setText("mse2");
+        jPanel3.add(jLabel25);
+        jLabel25.setBounds(280, 40, 25, 14);
+
+        jLabel26.setText("see");
+        jPanel3.add(jLabel26);
+        jLabel26.setBounds(350, 40, 17, 14);
+
+        jLabel27.setText("jLabel27");
+        jPanel3.add(jLabel27);
+        jLabel27.setBounds(40, 70, 40, 14);
+
+        jLabel28.setText("jLabel28");
+        jPanel3.add(jLabel28);
+        jLabel28.setBounds(40, 90, 40, 14);
+
+        jLabel29.setText("jLabel29");
+        jPanel3.add(jLabel29);
+        jLabel29.setBounds(40, 110, 40, 14);
+
+        jLabel30.setText("jLabel30");
+        jPanel3.add(jLabel30);
+        jLabel30.setBounds(40, 130, 40, 14);
+
+        jLabel31.setText("jLabel31");
+        jPanel3.add(jLabel31);
+        jLabel31.setBounds(40, 150, 40, 14);
+
+        jLabel38.setText("jLabel38");
+        jPanel3.add(jLabel38);
+        jLabel38.setBounds(220, 70, 40, 14);
+
+        jLabel40.setText("jLabel40");
+        jPanel3.add(jLabel40);
+        jLabel40.setBounds(220, 90, 40, 14);
+
+        jLabel41.setText("jLabel41");
+        jPanel3.add(jLabel41);
+        jLabel41.setBounds(220, 110, 40, 14);
+
+        jLabel42.setText("jLabel42");
+        jPanel3.add(jLabel42);
+        jLabel42.setBounds(220, 130, 40, 14);
+
+        jLabel43.setText("jLabel43");
+        jPanel3.add(jLabel43);
+        jLabel43.setBounds(220, 150, 40, 14);
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(430, 300, 400, 230);
+
+        jButton1.setText("Go Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(360, 530, 130, 30);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     setVisible(false);
+     frame2 f2=new frame2();
+     f2.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(studentinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(studentinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(studentinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(studentinfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new studentinfo().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    // End of variables declaration//GEN-END:variables
+}
